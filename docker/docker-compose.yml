@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  app:
+    image: szalasartur/python_app
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_URL=192.168.18.51
+      - POSTGRES_USER=artur
+      - POSTGRES_PW=123456
+      - POSTGRES_DB=app

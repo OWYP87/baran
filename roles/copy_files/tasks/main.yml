@@ -1,0 +1,76 @@
+- name: Install aptitude
+  apt:
+    name: aptitude
+    state: latest
+    update_cache: true
+
+- name: Download apt key
+  get_url:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    dest: /tmp # or /etc/pki/rpm-gpg depending on the infrastructure
+
+- name: Add a key from a file
+  ansible.builtin.apt_key:
+    file: /tmp/gpg
+    state: present
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu jammy stable
+    state: present
+
+- name: Update apt and install docker-ce
+  apt:
+    name: docker-ce
+    state: latest
+    update_cache: true
+
+- name: Install Docker Module for Python
+  pip:
+      name: docker
+
+- name: start and enable docker daemon
+  become: yes
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: start and enable containerd daemon
+  become: yes
+  service:
+    name: containerd
+    state: started
+    enabled: yes
+
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: ./ansible-work/tasks-1/
+    state: directory
+
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: ./ansible-work/tasks-2/
+    state: directory
+
+- name: Copy file into servers
+  ansible.builtin.copy:
+    src: files/app.py
+    dest: ./app.py
+
+- name: Copy Template file onto servers
+  ansible.builtin.template:
+    src: templates/template_file.txt.j2
+    dest: ./ansible-work/tasks-2/template_file.txt.j2
+
+- name: copy Docker Compose files
+  ansible.builtin.template:
+    src: templates/{{ item }}
+    dest: ./docker-compose.yaml
+  loop:
+  - docker-compose.yaml.j2
+
+- name: Run `docker-compose up`
+  docker_compose:
+    project_src: ./
+    build: yes

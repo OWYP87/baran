@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# Function to remove Docker containers
+remove_containers() {
+    # List available containers
+    docker ps -a
+
+    # Prompt for container IDs to remove
+    echo "Enter the container IDs to remove (separated by spaces):"
+    read -r container_ids
+
+    # Remove the selected containers
+    docker rm $container_ids
+}
+
+# Function to remove Docker images
+remove_images() {
+    # List available images
+    docker images
+
+    # Prompt for image IDs to remove
+    echo "Enter the image IDs to remove (separated by spaces):"
+    read -r image_ids
+
+    # Remove the selected images
+    docker rmi $image_ids
+}
+
+# Main menu
+echo "What would you like to remove?"
+echo "1. Containers"
+echo "2. Images"
+echo "3. Exit"
+
+read -r choice
+
+case $choice in
+    1)
+        remove_containers
+        ;;
+    2)
+        remove_images
+        ;;
+    3)
+        echo "Goodbye!"
+        exit 0
+        ;;
+    *)
+        echo "Invalid choice."
+        exit 1
+        ;;
+esac
+
+                                                                                                                5,1           Top
+
+

@@ -1,0 +1,17 @@
+- hosts: lab
+  vars:
+    -  app_version: "0.0.1"
+  become: true
+  roles:
+    - geerlingguy.pip
+    - copy_files
+    - singleplatform-eng.users
+
+- hosts: test
+  vars:
+    -  app_version: "0.0.2"
+  become: true
+  roles:
+    - geerlingguy.pip
+    - copy_files
+    - singleplatform-eng.users 

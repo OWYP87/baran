@@ -1,0 +1,18 @@
+student_initials: 'artur'
+groups_to_create:
+  - name: developers
+    gid: 10000
+users:
+  - username: python_app
+    name: Python App
+    groups: ['developers']
+    uid: 1005
+web_app_name: app.py
+web_app_port: 8000
+database_name: app
+database_ip: 192.168.18.51
+postgres_user: artur
+postgres_pass: 123456
+pip_install_packages:
+  - name: docker
+  - name: docker-compose
