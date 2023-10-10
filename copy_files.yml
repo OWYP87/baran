@@ -1,6 +1,6 @@
 - hosts: lab
   vars:
-    -  app_version: "0.0.1"
+    - app_version: "0.0.1"
   become: true
   roles:
     - geerlingguy.pip
@@ -9,7 +9,7 @@
 
 - hosts: test
   vars:
-    -  app_version: "0.0.2"
+    - app_version: "0.0.2"
   become: true
   roles:
     - geerlingguy.pip

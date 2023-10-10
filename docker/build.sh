@@ -8,12 +8,20 @@ else
   export IMAGE_VERSION="$1" 
 fi
 
-export AWS_PROFIL="swissborg"
-export DOCKER_REGISTRY="363685691972.dkr.ecr.eu-west-1.amazonaws.com"
-export COMPONENT="swissborg-app"
+export DOCKER_REGISTRY="szalasartur"
+export COMPONENT="python_app"
 export DOCKER_IMAGE_URL="${DOCKER_REGISTRY}/${COMPONENT}"
 
-aws ecr get-login-password --region eu-west-1 --profile swissborg  | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}
+# update version and build docker image
+
+VERSION=$1 # get version from the args
+GIT_HASH=$(git rev-parse --short HEAD )
+
+# update version.txt
+echo "Version is: $VERSION" > version.txt
+echo "Git hash is: $GIT_HASH" >> version.txt
+
+# there is no login - we assume user already had logged into docker registry the main one https://hub.docker.com/
 
 docker build -f Dockerfile --tag ${COMPONENT}:${IMAGE_VERSION} .
 docker tag ${COMPONENT}:${IMAGE_VERSION} ${DOCKER_IMAGE_URL}:${IMAGE_VERSION}

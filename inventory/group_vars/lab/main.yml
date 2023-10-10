@@ -16,3 +16,4 @@ postgres_pass: 123456
 pip_install_packages:
   - name: docker
   - name: docker-compose
+image_version: '0.0.2'
