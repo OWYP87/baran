@@ -8,7 +8,7 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app 
 COPY . /app
 
-# Skopiuj plik requirements.txt do katalogu roboczego w kontenerze 
+# copy requirements.txt to workdir 
 COPY requirements.txt .
 
 # install requirements.txt
@@ -17,11 +17,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # create db dir
 CMD mkdir /app/db
 
-# Skopiuj plik run.sh do kontenera 
+# copy run.sh to image 
 COPY run.sh . 
 
-# Nadaj uprawnienia do pliku run.sh 
+# grant permissions run.sh 
 RUN chmod +x run.sh 
 
-# Ustaw komendę, która zostanie uruchomiona po starcie kontenera 
+# after completed work, run 
 CMD ["./run.sh"]
