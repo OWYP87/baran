@@ -21,11 +21,11 @@ jobs:
 
       - name: Install geerlingguy.pip
         run: |
-          sudo apt-get install geerlingguy.pip
+          ansible-galaxy install geerlingguy.pip
 
       - name: Install singleplatform-eng.users
         run: |
-          sudo apt-get singleplatform-eng.users
+          ansible-galaxy install singleplatform-eng.users
 
       - name: Run Ansible Playbook
         run: |
