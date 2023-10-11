@@ -1,4 +1,4 @@
-/name: Docker Image Python App
+name: Docker Image Python App
 
 on:
   push:
