@@ -20,10 +20,10 @@ jobs:
           ANSIBLE_HOST_KEY_CHECKING: False  # Opcjonalnie, wyłącza sprawdzanie host key
 
       - name: Install aptitude
-        apt: 
-          name: aptitude
-          state: latest
-          update_cache: true
+        run: |
+          apt-get install aptitude
+
+      - name: 
 
       - name: Run Ansible Playbook
         run: |
