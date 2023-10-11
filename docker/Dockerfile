@@ -9,7 +9,7 @@ WORKDIR /app
 COPY . /app
 
 # copy requirements.txt to workdir 
-COPY requirements.txt .
+COPY docker/requirements.txt .
 
 # install requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
@@ -18,7 +18,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 CMD mkdir /app/db
 
 # copy run.sh to image 
-COPY run.sh . 
+COPY docker/run.sh . 
 
 # grant permissions run.sh 
 RUN chmod +x run.sh 
