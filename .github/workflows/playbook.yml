@@ -17,11 +17,15 @@ jobs:
         run: |
           pip install ansible
         env:
-          ANSIBLE_HOST_KEY_CHECKING: False  # Opcjonalnie, wyłącza sprawdzanie host key
+          ANSIBLE_HOST_KEY_CHECKING: False
 
-      - name: Install aptitude
+      - name: Install geerlingguy.pip
         run: |
-          apt-get install aptitude
+          sudo apt-get install geerlingguy.pip
+
+      - name: Install singleplatform-eng.users
+        run: |
+          sudo apt-get singleplatform-eng.users
 
       - name: Run Ansible Playbook
         run: |
