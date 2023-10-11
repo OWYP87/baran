@@ -1,0 +1,2 @@
+Version is: 0.0.5
+Git hash is: 21a3abc
