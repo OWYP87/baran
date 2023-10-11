@@ -3,6 +3,7 @@ name: Docker Image Python App
 on:
   push:
     branches: [ "main" ]
+    tags: [ v* ]
   pull_request:
     branches: [ "main" ]
   
@@ -26,6 +27,9 @@ jobs:
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: szalasartur/python_app
+        tags:
+          TAG: $(date +%Y%m%d%H%M%S)
+          
       
       - name: Build and push Docker image
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
@@ -33,7 +37,6 @@ jobs:
           context: .
           file: ./docker/Dockerfile
           push: true
-          tags: '$(date +%Y%m%d%H%M%S)'
-          # tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}        
   
