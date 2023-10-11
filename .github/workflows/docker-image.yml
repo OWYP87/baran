@@ -35,6 +35,5 @@ jobs:
           push: true
           tags: '$(date +%Y%m%d%H%M%S)'
           # tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          
-
+          labels: ${{ steps.meta.outputs.labels }}        
+  
