@@ -27,6 +27,16 @@ jobs:
         run: |
           ansible-galaxy install singleplatform-eng.users
 
+      - name: Install OpenVPN
+          run: |
+            sudo apt update
+            sudo apt install -y openvpn openvpn-systemd-resolved
+            
+      - name: Connect to VPN
+          uses: "kota65535/github-openvpn-connect-action@v2"
+          with:
+            config_file: .github/workflows/${{ secrets.client_ovpn }}
+
       - name: Run Ansible Playbook
         run: |
           ansible-playbook -i inventory/inventory.ini copy_files.yml
