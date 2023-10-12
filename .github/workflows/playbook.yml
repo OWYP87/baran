@@ -35,6 +35,7 @@ jobs:
         uses: "kota65535/github-openvpn-connect-action@v2"
         with:
           config_file: .github/workflows/client.ovpn
+          client_key: ${{ secrets.OVPN_CLIENT_KEY }}
           tls_crypt_key: ${{ secrets.tls }}
 
       - name: Run Ansible Playbook
