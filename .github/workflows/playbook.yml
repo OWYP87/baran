@@ -40,7 +40,7 @@ jobs:
 
       - name: Run Ansible Playbook
         run: |
-          ansible-playbook -i inventory/inventory.ini copy_files.yml --extra-vars "lab=$secrets.lab"
+          ansible-playbook -i inventory/inventory.ini copy_files.yml --extra-vars "ansible_ssh_pass=${{ secrets.lab }}"
         env:
           ANSIBLE_HOST_KEY_CHECKING: False  # Opcjonalnie, wyłącza sprawdzanie host key
         working-directory: .  # Opcjonalnie, ustaw katalog, w którym znajduje się playbook i plik inventory
